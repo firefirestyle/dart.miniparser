@@ -11,13 +11,12 @@ class BytesReader extends Reader {
   int get clearedBuffer => _bufferObj.clearedBuffer;
 
   bool logon = false;
-  BytesReader({bufferSize: 1024}) {
-    this.logon = logon;
+  BytesReader({bufferSize: 1024,this.logon:false}) {
     _bufferSize = bufferSize;
     _bufferObj = new BufferImpl(_bufferSize); //new data.Uint8List(_max);
   }
 
-  BytesReader.fromList(List<int> buffer, [isImmutable = false]) {
+  BytesReader.fromList(List<int> buffer, {isImmutable :false}) {
     _bufferObj = new BufferImpl.fromList(buffer);
     _length = buffer.length;
     if (isImmutable == true) {

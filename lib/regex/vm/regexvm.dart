@@ -55,7 +55,7 @@ class RegexVM {
   }
 
   async.Future<List<List<int>>> lookingAt(List<int> text) {
-    heti.MiniParser parser = new heti.MiniParser(new heti.BytesReader.fromList(text, true));
+    heti.MiniParser parser = new heti.MiniParser(new heti.BytesReader.fromList(text, isImmutable: true));
     return lookingAtFromEasyParser(parser);
   }
 
