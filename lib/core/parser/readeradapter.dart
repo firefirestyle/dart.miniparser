@@ -26,9 +26,8 @@ class TetReaderAdapter extends Reader {
     return _base.currentSize;
   }
 
-  Completer<bool> get rawcompleterFin => _base.rawcompleterFin;
   //
-  Future<bool> getStockedSignal() => _base.getStockedSignal();
+  Future<bool> notifyImmutable() => _base.notifyImmutable();
 
   Future<List<int>> getBytes(int index, int length, {List<int> out: null}) async {
     return await _base.getBytes(index + _startIndex, length);
@@ -38,13 +37,13 @@ class TetReaderAdapter extends Reader {
     return await _base.getIndex(index + _startIndex, length);
   }
 
-  void fin() {
-    _base.fin();
+  void completeDataAppending() {
+    _base.completeDataAppending();
   }
 
   bool get immutable => _base.immutable;
 
-  void set immutable(bool v) {
-    _base.immutable = v;
+  void set doImmutable(bool v) {
+    _base.doImmutable(v);
   }
 }

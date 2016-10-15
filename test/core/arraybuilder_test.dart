@@ -185,6 +185,6 @@ void main() {
      await new Future(() {
        builder.appendByte(4);
      });
-     builder.fin();
+     builder.completeDataAppending();
    });
 }

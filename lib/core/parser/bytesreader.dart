@@ -21,7 +21,7 @@ class BytesReader extends Reader {
     _buffer8 = new BufferImpl.fromList(buffer);
     _length = buffer.length;
     if (isFin == true) {
-      fin();
+      completeDataAppending();
     }
   }
 
@@ -97,8 +97,8 @@ class BytesReader extends Reader {
 
   Future<int> getLength() async => _length;
 
-  void fin() {
-    immutable = true;
+  void completeDataAppending() {
+    super.completeDataAppending();
     _updateGetInfos();
     mGetByteFutreList.clear();
   }
