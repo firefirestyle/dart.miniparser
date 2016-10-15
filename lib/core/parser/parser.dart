@@ -115,6 +115,7 @@ class MiniParser {
     if (_buffer[i] != valueByte) {
       throw (logon == false ? myException : new Exception());
     }
+    index += 1;
     return valueByte;
   }
 
