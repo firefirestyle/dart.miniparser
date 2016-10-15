@@ -1,10 +1,10 @@
 part of core;
 
-abstract class HetimaDataBuilder {
-  Future<HetimaData> createHetimaData(String path);
+abstract class AsyncDataBuilder {
+  Future<AsyncData> createData(String path);
 }
 
-abstract class HetimaData implements HetimaFileReader, HetimaFileWriter {
+abstract class AsyncData implements DataReader, DataWriter {
   bool get writable => false;
   bool get readable => false;
   Future<int> getLength();
@@ -13,12 +13,12 @@ abstract class HetimaData implements HetimaFileReader, HetimaFileWriter {
   void beToReadOnly();
 }
 
-abstract class HetimaFileWriter {
+abstract class DataWriter {
   Future<int> getLength();
   Future<WriteResult> write(Object o, int start,[int length=null]);
 }
 
-abstract class HetimaFileReader {
+abstract class DataReader {
   Future<int> getLength();
   Future<ReadResult> read(int offset, int length);
 }

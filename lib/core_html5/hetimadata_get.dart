@@ -1,7 +1,7 @@
 part of hetimacore_cl;
 
 
-class HetimaDataGet extends HetimaData {
+class HetimaDataGet extends AsyncData {
 
   html.Blob _mBlob = null;
   String _mPath = "";

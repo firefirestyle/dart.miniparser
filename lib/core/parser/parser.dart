@@ -16,7 +16,7 @@ class MiniParser {
   }
 
   MiniParser toClone() {
-    MiniParser parser = new MiniParser(new TetReaderAdapter(_buffer, 0), cacheSize: _cache.cacheSize);
+    MiniParser parser = new MiniParser(new ReaderAdapter(_buffer, 0), cacheSize: _cache.cacheSize);
     parser.index = index;
     parser.stack = new List.from(stack);
     return parser;

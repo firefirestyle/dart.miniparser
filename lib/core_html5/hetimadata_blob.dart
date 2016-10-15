@@ -1,14 +1,14 @@
 part of hetimacore_cl;
 
 
-class HetimaDataBlob extends HetimaData {
+class HetimaDataBlob extends AsyncData {
   html.Blob _mBlob;
-  HetimaFileWriter _mWriter;
+  DataWriter _mWriter;
 
   bool get writable => (_mWriter == true);
   bool get readable => true;
 
-  HetimaDataBlob(bl, [HetimaFileWriter writer = null]) {
+  HetimaDataBlob(bl, [DataWriter writer = null]) {
     _mBlob = bl;
     _mWriter = writer;
   }

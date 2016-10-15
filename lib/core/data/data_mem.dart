@@ -1,7 +1,7 @@
 part of core;
 
 
-class HetimaDataMemory extends HetimaData {
+class HetimaDataMemory extends AsyncData {
   bool get writable => true;
   bool get readable => true;
 

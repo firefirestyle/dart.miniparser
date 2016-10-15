@@ -1,13 +1,13 @@
 part of hetimacore_cl;
 
 
-class HetimaDataFSBuilder extends HetimaDataBuilder {
-  Future<HetimaData> createHetimaData(String path) async {
+class HetimaDataFSBuilder extends AsyncDataBuilder {
+  Future<AsyncData> createData(String path) async {
     return new HetimaDataFS(path);
   }
 }
 
-class HetimaDataFS extends HetimaData {
+class HetimaDataFS extends AsyncData {
   String _fileName = "";
   String get fileName => _fileName;
   html.FileEntry _fileEntry = null;

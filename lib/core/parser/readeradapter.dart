@@ -1,13 +1,13 @@
 
 part of core;
-class TetReaderAdapter extends Reader {
+class ReaderAdapter extends Reader {
   Reader _base = null;
   int _startIndex = 0;
   int operator [](int index) {
     return _base[index + _startIndex];
   }
 
-  TetReaderAdapter(Reader builder, int startIndex) {
+  ReaderAdapter(Reader builder, int startIndex) {
     _base = builder;
     _startIndex = startIndex;
   }
