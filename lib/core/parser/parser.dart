@@ -79,8 +79,8 @@ class MiniParser {
     if (i + encoded.length > _buffer.currentSize) {
       return false;
     }
-    for(int j=0;j<encoded.length;j++) {
-      if(_buffer[j+i] != encoded[j]){
+    for (int j = 0; j < encoded.length; j++) {
+      if (_buffer[j + i] != encoded[j]) {
         return false;
       }
     }
@@ -98,13 +98,24 @@ class MiniParser {
     if (i + valueBytes.length > _buffer.currentSize) {
       throw (logon == false ? myException : new Exception());
     }
-    for(int j=0;j<valueBytes.length;j++) {
-      if(_buffer[j+i] != valueBytes[j]){
+    for (int j = 0; j < valueBytes.length; j++) {
+      if (_buffer[j + i] != valueBytes[j]) {
         throw (logon == false ? myException : new Exception());
       }
     }
-    index +=valueBytes.length;
+    index += valueBytes.length;
     return valueBytes;
+  }
+
+  Future<int> nextByte(int valueByte) async {
+    int i = await _buffer.getIndex(index, 1);
+    if (i + 1 > _buffer.currentSize) {
+      throw (logon == false ? myException : new Exception());
+    }
+    if (_buffer[i] != valueByte) {
+      throw (logon == false ? myException : new Exception());
+    }
+    return valueByte;
   }
 
   Future<String> readStringWithLength(int length) async {
