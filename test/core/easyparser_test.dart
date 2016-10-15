@@ -27,7 +27,7 @@ void main() {
       BytesReader b = new BytesReader();
       b.appendString("abc");
       MiniParser parser = new MiniParser(b);
-      String bb = await parser.readSignWithLength(2);
+      String bb = await parser.nextSignWithLength(2);
       unit.expect(bb, "ab");
     }
   });
@@ -36,7 +36,7 @@ void main() {
       BytesReader b = new BytesReader();
       b.appendIntList(ByteOrder.parseShortByte(10, ByteOrderType.BigEndian));
       MiniParser parser = new MiniParser(b);
-      int bb = await parser.readShort(ByteOrderType.BigEndian);
+      int bb = await parser.nextShort(ByteOrderType.BigEndian);
       unit.expect(bb, 10);
     }
   });
@@ -47,7 +47,7 @@ void main() {
       BytesReader b = new BytesReader();
       b.appendIntList(ByteOrder.parseIntByte(10, ByteOrderType.LittleEndian));
       MiniParser parser = new MiniParser(b);
-      int bb = await parser.readInt(ByteOrderType.LittleEndian);
+      int bb = await parser.nextInt(ByteOrderType.LittleEndian);
       unit.expect(bb, 10);
     }
   });
@@ -57,7 +57,7 @@ void main() {
       BytesReader b = new BytesReader();
       b.appendIntList(ByteOrder.parseLongByte(10, ByteOrderType.LittleEndian));
       MiniParser parser = new MiniParser(b);
-      int bb = await parser.readLong(ByteOrderType.LittleEndian);
+      int bb = await parser.nextLong(ByteOrderType.LittleEndian);
       unit.expect(bb, 10);
     }
   });
@@ -67,7 +67,7 @@ void main() {
       BytesReader b = new BytesReader();
       b.appendByte(10);
       MiniParser parser = new MiniParser(b);
-      int bb = await parser.readByte();
+      int bb = await parser.nextByte();
       unit.expect(bb, 10);
     }
   });

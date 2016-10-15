@@ -9,13 +9,13 @@ class RegexLexer {
 
     List<RegexToken> tokens = [];
     loop() {
-      parser.readByte().then((int v) {
+      parser.nextByte().then((int v) {
         switch (v) {
           case 0x2a: // *
             tokens.add(new RegexToken.fromChar(v, RegexToken.star));
             break;
           case 0x5c: // \
-            parser.readByte().then((int v) {
+            parser.nextByte().then((int v) {
               tokens.add(new RegexToken.fromChar(v, RegexToken.character));
               loop();
             });

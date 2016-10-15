@@ -4,7 +4,7 @@ class AllCharCommand extends RegexCommand {
   @override
   async.Future<List<int>> check(RegexVM vm, heti.MiniParser parser) {
     async.Completer<List<int>> c = new async.Completer();
-    parser.readByte().then((int v) {
+    parser.nextByte().then((int v) {
       vm._currentTask._nextCommandLocation += 1;
       c.complete([v]);
     }).catchError((e) {
@@ -39,7 +39,7 @@ class MatchByteCommand extends RegexCommand {
   @override
   async.Future<List<int>> check(RegexVM vm, heti.MiniParser parser) {
     async.Completer<List<int>> c = new async.Completer();
-    parser.readByte().then((int v) {
+    parser.nextByte().then((int v) {
       for(int d in target) {
         if(d == v) {
           vm._currentTask._nextCommandLocation += 1;
@@ -64,7 +64,7 @@ class UnmatchByteCommand extends RegexCommand {
   @override
   async.Future<List<int>> check(RegexVM vm, heti.MiniParser parser) {
     async.Completer<List<int>> c = new async.Completer();
-    parser.readByte().then((int v) {
+    parser.nextByte().then((int v) {
       for(int d in target) {
         if(d == v) {
           c.completeError(new Exception());
