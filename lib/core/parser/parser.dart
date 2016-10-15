@@ -89,17 +89,22 @@ class MiniParser {
 
   Future<String> nextString(String value) async {
     List<int> encoded = convert.UTF8.encode(value);
-    int i = await _buffer.getIndex(index, encoded.length);
-    if (i + encoded.length > _buffer.currentSize) {
+    await this.nextBytes(encoded);
+    return value;
+  }
+
+  Future<List<int>> nextBytes(List<int> valueBytes) async {
+    int i = await _buffer.getIndex(index, valueBytes.length);
+    if (i + valueBytes.length > _buffer.currentSize) {
       throw (logon == false ? myException : new Exception());
     }
-    for(int j=0;j<encoded.length;j++) {
-      if(_buffer[j+i] != encoded[j]){
+    for(int j=0;j<valueBytes.length;j++) {
+      if(_buffer[j+i] != valueBytes[j]){
         throw (logon == false ? myException : new Exception());
       }
     }
-    index +=encoded.length;
-    return value;
+    index +=valueBytes.length;
+    return valueBytes;
   }
 
   Future<String> readStringWithLength(int length) async {
@@ -238,6 +243,7 @@ class EasyParserIncludeMatcher extends EasyParserMatcher {
     return include.contains(target);
   }
 }
+
 class EasyParserStringMatcher extends EasyParserMatcher {
   List<int> include = null;
   int index = 0;
