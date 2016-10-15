@@ -2,7 +2,7 @@ part of hetimaregex;
 
 class AllCharCommand extends RegexCommand {
   @override
-  async.Future<List<int>> check(RegexVM vm, heti.EasyParser parser) {
+  async.Future<List<int>> check(RegexVM vm, heti.MiniParser parser) {
     async.Completer<List<int>> c = new async.Completer();
     parser.readByte().then((int v) {
       vm._currentTask._nextCommandLocation += 1;
@@ -19,7 +19,7 @@ class AllCharCommand extends RegexCommand {
 
 class EmptyCommand extends RegexCommand {
   @override
-  async.Future<List<int>> check(RegexVM vm, heti.EasyParser parser) {
+  async.Future<List<int>> check(RegexVM vm, heti.MiniParser parser) {
     async.Completer<List<int>> c = new async.Completer();
     vm._currentTask._nextCommandLocation += 1;
     c.complete([]);
@@ -37,7 +37,7 @@ class MatchByteCommand extends RegexCommand {
   }
 
   @override
-  async.Future<List<int>> check(RegexVM vm, heti.EasyParser parser) {
+  async.Future<List<int>> check(RegexVM vm, heti.MiniParser parser) {
     async.Completer<List<int>> c = new async.Completer();
     parser.readByte().then((int v) {
       for(int d in target) {
@@ -47,7 +47,7 @@ class MatchByteCommand extends RegexCommand {
           return;
         }
       }
-      c.completeError(new Exception());      
+      c.completeError(new Exception());
     }).catchError((e) {
       c.completeError(e);
     });
@@ -62,17 +62,17 @@ class UnmatchByteCommand extends RegexCommand {
   }
 
   @override
-  async.Future<List<int>> check(RegexVM vm, heti.EasyParser parser) {
+  async.Future<List<int>> check(RegexVM vm, heti.MiniParser parser) {
     async.Completer<List<int>> c = new async.Completer();
     parser.readByte().then((int v) {
       for(int d in target) {
         if(d == v) {
-          c.completeError(new Exception()); 
+          c.completeError(new Exception());
           return;
         }
       }
       vm._currentTask._nextCommandLocation += 1;
-      c.complete([v]);     
+      c.complete([v]);
     }).catchError((e) {
       c.completeError(e);
     });
@@ -86,7 +86,7 @@ class UncharacterCommand extends RegexCommand {
   }
 
   @override
-  async.Future<List<int>> check(RegexVM vm, heti.EasyParser parser) {
+  async.Future<List<int>> check(RegexVM vm, heti.MiniParser parser) {
     async.Completer<List<int>> c = new async.Completer();
     int length = without.length;
     parser.push();
@@ -115,7 +115,7 @@ class UncharacterCommand extends RegexCommand {
         return;
       }
 
-    }).catchError((e) {      
+    }).catchError((e) {
       parser.pop();
       c.completeError(e);
     });

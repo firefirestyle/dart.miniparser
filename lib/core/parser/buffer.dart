@@ -1,6 +1,6 @@
-part of hetimacore;
+part of core;
 
-abstract class TetBuffer {
+abstract class Buffer {
   int get cacheSize;
   int get clearedBuffer;
   int get length;
@@ -11,7 +11,7 @@ abstract class TetBuffer {
   void expandBuffer(int nextMax);
 }
 
-class TetBufferPlus implements TetBuffer {
+class BufferImpl implements Buffer {
   //
   bool logon = false;
 
@@ -32,12 +32,12 @@ class TetBufferPlus implements TetBuffer {
   @override
   int get length => _length + _clearedBuffer;
 
-  TetBufferPlus(int max) {
+  BufferImpl(int max) {
     _length = max;
     _buffer8 = new data.Uint8List(max);
   }
 
-  TetBufferPlus.fromList(List<int> buffer) {
+  BufferImpl.fromList(List<int> buffer) {
     _length = buffer.length;
     _buffer8 = new data.Uint8List.fromList(buffer);
   }

@@ -1,4 +1,4 @@
-part of hetimacore;
+part of core;
 
 abstract class HetimaDataBuilder {
   Future<HetimaData> createHetimaData(String path);

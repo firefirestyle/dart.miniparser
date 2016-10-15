@@ -1,4 +1,4 @@
-part of hetimacore;
+part of core;
 
 class Bencode {
 
@@ -191,7 +191,7 @@ class Bdecoder {
 }
 
 class Bencoder {
-  ArrayBuilder builder = new ArrayBuilder();
+  BytesReader builder = new BytesReader();
 
   data.Uint8List enode(Object obj) {
     builder.clear();

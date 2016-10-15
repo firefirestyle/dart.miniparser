@@ -4,9 +4,9 @@ import 'package:miniparser/core.dart';
 void main() {
   unit.test("nextBuffer", () async {
     {
-      ArrayBuilder b = new ArrayBuilder();
+      BytesReader b = new BytesReader();
       b.appendIntList([1, 2, 3, 4, 5]);
-      EasyParser parser = new EasyParser(b);
+      MiniParser parser = new MiniParser(b);
       List<int> bb = await parser.nextBuffer(3);
       unit.expect(bb, [1, 2, 3]);
     }
@@ -14,9 +14,9 @@ void main() {
 
   unit.test("nextString", () async {
     {
-      ArrayBuilder b = new ArrayBuilder();
+      BytesReader b = new BytesReader();
       b.appendString("abc");
-      EasyParser parser = new EasyParser(b);
+      MiniParser parser = new MiniParser(b);
       String bb = await parser.nextString("abc");
       unit.expect(bb, "abc");
     }
@@ -24,18 +24,18 @@ void main() {
 
   unit.test("readSign", () async {
     {
-      ArrayBuilder b = new ArrayBuilder();
+      BytesReader b = new BytesReader();
       b.appendString("abc");
-      EasyParser parser = new EasyParser(b);
+      MiniParser parser = new MiniParser(b);
       String bb = await parser.readSignWithLength(2);
       unit.expect(bb, "ab");
     }
   });
   unit.test("readShort", () async {
     {
-      ArrayBuilder b = new ArrayBuilder();
+      BytesReader b = new BytesReader();
       b.appendIntList(ByteOrder.parseShortByte(10, ByteOrderType.BigEndian));
-      EasyParser parser = new EasyParser(b);
+      MiniParser parser = new MiniParser(b);
       int bb = await parser.readShort(ByteOrderType.BigEndian);
       unit.expect(bb, 10);
     }
@@ -44,9 +44,9 @@ void main() {
 
   unit.test("readInt", () async {
     {
-      ArrayBuilder b = new ArrayBuilder();
+      BytesReader b = new BytesReader();
       b.appendIntList(ByteOrder.parseIntByte(10, ByteOrderType.LittleEndian));
-      EasyParser parser = new EasyParser(b);
+      MiniParser parser = new MiniParser(b);
       int bb = await parser.readInt(ByteOrderType.LittleEndian);
       unit.expect(bb, 10);
     }
@@ -54,9 +54,9 @@ void main() {
 
   unit.test("readLong", () async {
     {
-      ArrayBuilder b = new ArrayBuilder();
+      BytesReader b = new BytesReader();
       b.appendIntList(ByteOrder.parseLongByte(10, ByteOrderType.LittleEndian));
-      EasyParser parser = new EasyParser(b);
+      MiniParser parser = new MiniParser(b);
       int bb = await parser.readLong(ByteOrderType.LittleEndian);
       unit.expect(bb, 10);
     }
@@ -64,9 +64,9 @@ void main() {
 
   unit.test("readByte", () async {
     {
-      ArrayBuilder b = new ArrayBuilder();
+      BytesReader b = new BytesReader();
       b.appendByte(10);
-      EasyParser parser = new EasyParser(b);
+      MiniParser parser = new MiniParser(b);
       int bb = await parser.readByte();
       unit.expect(bb, 10);
     }
@@ -74,9 +74,9 @@ void main() {
 
   unit.test("nextBuffer", () async {
     {
-      ArrayBuilder b = new ArrayBuilder();
+      BytesReader b = new BytesReader();
       b.appendIntList([1,2,3,4,5,6]);
-      EasyParser parser = new EasyParser(b);
+      MiniParser parser = new MiniParser(b);
       List<int> b1 = await parser.nextBuffer(3);
       unit.expect(b1, [1,2,3]);
       List<int> b2 = await parser.nextBuffer(3);

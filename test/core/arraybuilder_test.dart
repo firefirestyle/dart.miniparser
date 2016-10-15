@@ -6,14 +6,14 @@ void main() {
 //  hetima.HetiTest test = new hetima.HetiTest("tt");
 
   unit.test("arraybuilder: init", () {
-    hetima.ArrayBuilder builder = new hetima.ArrayBuilder();
+    hetima.BytesReader builder = new hetima.BytesReader();
     unit.expect(0, builder.currentSize);
     unit.expect(0, builder.toList().length);
     unit.expect("", builder.toText());
   });
 
   unit.test("arraybuilder: senario", () {
-    hetima.ArrayBuilder builder = new hetima.ArrayBuilder();
+    hetima.BytesReader builder = new hetima.BytesReader();
     builder.appendString("abc");
     unit.expect("abc", builder.toText());
     unit.expect(3, builder.toList().length);
@@ -55,7 +55,7 @@ void main() {
   });
 
   unit.test("ArrayBuilderBuffer: ", () {
-    hetima.TetBufferPlus buffer = new hetima.TetBufferPlus(5);
+    hetima.BufferImpl buffer = new hetima.BufferImpl(5);
     unit.expect(5, buffer.length);
 
     buffer[0] = 1;
@@ -102,7 +102,7 @@ void main() {
   });
 
   unit.test("ArrayBuilderBuffer: ", () {
-    hetima.TetBufferPlus buffer = new hetima.TetBufferPlus(3);
+    hetima.BufferImpl buffer = new hetima.BufferImpl(3);
     unit.expect(3, buffer.length);
 
     buffer[0] = 1;
@@ -123,7 +123,7 @@ void main() {
   });
 
   unit.test("ArrayBuilderBuffer: [2]", () async {
-    hetima.ArrayBuilder builder = new hetima.ArrayBuilder();
+    hetima.BytesReader builder = new hetima.BytesReader();
     unit.expect(0, builder.currentSize);
 
     bool isOK1 = false;
@@ -167,7 +167,7 @@ void main() {
   });
 
   unit.test("ArrayBuilderBuffer: [2]", () async {
-     hetima.ArrayBuilder builder = new hetima.ArrayBuilder();
+     hetima.BytesReader builder = new hetima.BytesReader();
      builder.getBytes(2, 3).then((List<int > v) {
        unit.expect(v.length, 2);
        unit.expect(3, v[0]);

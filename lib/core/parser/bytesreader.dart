@@ -1,24 +1,24 @@
-part of hetimacore;
+part of core;
 
-class ArrayBuilder extends TetReader {
+class BytesReader extends Reader {
   int _max = 1024;
-  TetBufferPlus _buffer8;
+  BufferImpl _buffer8;
   int _length = 0;
 
-  TetBufferPlus get rawbuffer8 => _buffer8;
+  BufferImpl get rawbuffer8 => _buffer8;
   List<GetByteFutureInfo> mGetByteFutreList = new List();
 
   int get clearedBuffer => _buffer8.clearedBuffer;
 
   bool logon = false;
-  ArrayBuilder({bufferSize: 1024}) {
+  BytesReader({bufferSize: 1024}) {
     this.logon = logon;
     _max = bufferSize;
-    _buffer8 = new TetBufferPlus(_max); //new data.Uint8List(_max);
+    _buffer8 = new BufferImpl(_max); //new data.Uint8List(_max);
   }
 
-  ArrayBuilder.fromList(List<int> buffer, [isFin = false]) {
-    _buffer8 = new TetBufferPlus.fromList(buffer);
+  BytesReader.fromList(List<int> buffer, [isFin = false]) {
+    _buffer8 = new BufferImpl.fromList(buffer);
     _length = buffer.length;
     if (isFin == true) {
       fin();

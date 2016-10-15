@@ -1,6 +1,6 @@
-part of hetimacore;
+part of core;
 
-class Uuid 
+class Uuid
 {
   static math.Random _random = new math.Random();
   static String createUUID() {

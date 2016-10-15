@@ -1,4 +1,4 @@
-part of hetimacore;
+part of core;
 
 
 class HetimaDataMemory extends HetimaData {
