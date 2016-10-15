@@ -6,7 +6,7 @@ class BytesReader extends Reader {
   int _length = 0;
 
   BufferImpl get rawbuffer8 => _bufferObj;
-  List<GetByteFutureInfo> mGetByteFutreList = new List();
+  List<RequestBytes> mGetByteFutreList = new List();
 
   int get clearedBuffer => _bufferObj.clearedBuffer;
 
@@ -25,7 +25,7 @@ class BytesReader extends Reader {
   }
 
   Future<int> getIndex(int index, int length) {
-    GetByteFutureInfo info = new GetByteFutureInfo();
+    RequestBytes info = new RequestBytes();
 
     info.completerResultLength = length;
     info.index = index;
@@ -125,7 +125,7 @@ class BytesReader extends Reader {
   //
   //
   //
-  bool _updateGetInfo(GetByteFutureInfo info) {
+  bool _updateGetInfo(RequestBytes info) {
     if (this.immutable == true || info.index + info.completerResultLength - 1 < _length) {
       info.completer.complete(info.index);
       return true;
@@ -136,7 +136,7 @@ class BytesReader extends Reader {
 
   void _updateGetInfos() {
     var removeList = null;
-    for (GetByteFutureInfo f in mGetByteFutreList) {
+    for (RequestBytes f in mGetByteFutreList) {
       if (true == _updateGetInfo(f)) {
         if (removeList == null) {
           removeList = [];
@@ -145,14 +145,14 @@ class BytesReader extends Reader {
       }
     }
     if (removeList != null) {
-      for (GetByteFutureInfo f in removeList) {
+      for (RequestBytes f in removeList) {
         mGetByteFutreList.remove(f);
       }
     }
   }
 }
 
-class GetByteFutureInfo {
+class RequestBytes {
   int completerResultLength = 0;
   int index = 0;
   Completer<int> completer = null;
