@@ -24,9 +24,11 @@ class BytesReader extends Reader {
     }
   }
 
-  Future<int> getIndex(int index, int length) {
+  Future<int> getIndex(int index, int length) async {
+    if(currentSize >= (index+length)){
+      return index;
+    }
     RequestBytes info = new RequestBytes();
-
     info.completerResultLength = length;
     info.index = index;
     info.completer = new Completer();
