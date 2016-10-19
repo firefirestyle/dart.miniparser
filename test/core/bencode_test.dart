@@ -1,7 +1,7 @@
 library bencode.test;
 
 import 'package:test/test.dart' as unit;
-import 'package:miniparser/core.dart';
+import 'package:firefirestyle.miniparser/core.dart';
 import 'dart:typed_data' as type;
 import 'dart:convert' as convert;
 

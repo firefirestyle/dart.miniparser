@@ -1,5 +1,5 @@
 import 'package:test/test.dart' as unit;
-import 'package:miniparser/core.dart' as hetima;
+import 'package:firefirestyle.miniparser/core.dart' as hetima;
 import 'dart:typed_data' as type;
 import 'dart:convert' as convert;
 import 'dart:async';

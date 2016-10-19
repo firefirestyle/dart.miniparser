@@ -1,5 +1,5 @@
 import 'package:test/test.dart' as unit;
-import 'package:miniparser/core.dart';
+import 'package:firefirestyle.miniparser/core.dart';
 
 void main() {
   unit.test("nextBuffer", () async {

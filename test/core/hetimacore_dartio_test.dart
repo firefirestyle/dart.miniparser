@@ -1,6 +1,6 @@
 import 'package:test/test.dart' as unit;
-import 'package:miniparser/core.dart';
-import 'package:miniparser/core_dartio.dart';
+import 'package:firefirestyle.miniparser/core.dart';
+import 'package:firefirestyle.miniparser/core_dartio.dart';
 import 'dart:convert';
 
 void main() {

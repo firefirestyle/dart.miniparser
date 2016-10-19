@@ -1,5 +1,5 @@
 import 'package:test/test.dart' as unit;
-import 'package:miniparser/core.dart' as hetima;
+import 'package:firefirestyle.miniparser/core.dart' as hetima;
 import 'dart:async';
 
 void main() {

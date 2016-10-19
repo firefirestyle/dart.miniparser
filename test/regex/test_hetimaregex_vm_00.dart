@@ -1,6 +1,6 @@
 library dart_hetimaregex_test_vm;
 
-import 'package:miniparser/regex.dart' as regex;
+import 'package:firefirestyle.miniparser/regex.dart' as regex;
 import 'package:test/test.dart';
 
 import 'dart:convert' as conv;
